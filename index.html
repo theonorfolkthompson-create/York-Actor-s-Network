@@ -198,6 +198,9 @@ html[data-theme="night"] .wordmark .wm-script{color:var(--gold);}
 .provider-btn.slack .provider-icon{background:#4A154B;}
 .provider-btn.google .provider-icon{background:#fff;}
 .signin-note{text-align:center;font-size:0.6rem;color:var(--silver);letter-spacing:0.5px;opacity:0.65;line-height:1.6;}
+.google-signin-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:var(--dark2);border:1px solid rgba(var(--gold-rgb),0.35);color:var(--cream);font-family:var(--serif-body);font-size:0.92rem;font-weight:600;letter-spacing:0.5px;padding:13px 18px;border-radius:3px;cursor:pointer;transition:all 0.18s;margin:8px 0 16px;}
+.google-signin-btn:hover{border-color:var(--gold);background:rgba(var(--gold-rgb),0.08);transform:translateY(-1px);}
+.google-signin-btn .gsi-logo{background:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
 /* ═══════════════════════════════════════════════
    FAKE PROVIDER AUTH SCREENS
@@ -599,69 +602,20 @@ html[data-theme="night"] .wordmark .wm-script{color:var(--gold);}
 <!-- ═══ SIGN-IN MODAL ═══ -->
 <div class="modal-overlay" id="signInModal">
   <div class="modal signin-modal">
-
-    <!-- Provider list screen -->
-    <div class="auth-screen active" id="screenProviders">
-      <div class="modal-header">
-        <div><div class="modal-title">Sign In</div><div class="modal-date-label">Choose your account</div></div>
-        <button class="btn-close" id="closeSignIn">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="signin-intro"><p>Sign in to create and manage your own events. Anyone can view and sign up for events without an account.</p></div>
-        <div class="provider-list">
-          <button class="provider-btn slack" data-provider="slack">
-            <div class="provider-icon">
-              <svg width="18" height="18" viewBox="0 0 54 54" fill="none"><path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" fill="#36C5F0"/><path d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387" fill="#2EB67D"/><path d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386" fill="#ECB22E"/><path d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.249m14.336 0v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.249a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387" fill="#E01E5A"/></svg>
-            </div>
-            <div><div class="provider-name">Slack</div><div class="provider-desc">Sign in with your Slack workspace</div></div>
-          </button>
-          <button class="provider-btn google" data-provider="google">
-            <div class="provider-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            </div>
-            <div><div class="provider-name">Google</div><div class="provider-desc">Sign in with your Google account</div></div>
-          </button>
-        </div>
-        <div class="signin-note">This site uses simulated authentication for demonstration. Your details are stored locally on your device only.</div>
-      </div>
+    <div class="modal-header">
+      <div><div class="modal-title">Sign In</div><div class="modal-date-label">Join the network</div></div>
+      <button class="btn-close" id="closeSignIn">✕</button>
     </div>
-
-    <!-- Slack auth screen -->
-    <div class="auth-screen" id="screenSlack">
-      <div class="auth-brand-bar" style="background:#1a0a1c;">
-        <div class="auth-brand-logo" style="background:#4A154B;">
-          <svg width="18" height="18" viewBox="0 0 54 54" fill="none"><path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" fill="#36C5F0"/><path d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387" fill="#2EB67D"/><path d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386" fill="#ECB22E"/><path d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.249m14.336 0v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.249a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387" fill="#E01E5A"/></svg>
-        </div>
-        <span class="auth-brand-name" style="color:#fff;">Sign in to Slack</span>
-      </div>
-      <div class="auth-body">
-        <h3>Your workspace</h3>
-        <p>Enter your Slack display name or email address.</p>
-        <div class="auth-field"><label>Display Name or Email</label><input type="text" id="slackUser" placeholder="e.g. grace.kelly or grace@workspace.slack.com"/></div>
-        <div class="auth-field"><label>Password</label><input type="password" id="slackPass" placeholder="••••••••"/></div>
-        <button class="auth-submit-btn slack-btn" id="slackSubmit">Sign In with Slack</button>
-        <div class="auth-back-link" data-back>← Back to providers</div>
-      </div>
-    </div>
-
-    <!-- Google auth screen -->
-    <div class="auth-screen" id="screenGoogle">
-      <div class="auth-brand-bar" style="background:#1c1c1c;">
-        <div class="auth-brand-logo" style="background:#fff;">
+    <div class="modal-body">
+      <div class="signin-intro"><p>Sign in to create and manage events, sign up for parts, and post suggestions. Anyone can browse the calendar without an account.</p></div>
+      <button class="google-signin-btn" id="googleSignInBtn">
+        <span class="gsi-logo">
           <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-        </div>
-        <span class="auth-brand-name" style="color:#e0e0e0;">Sign in with Google</span>
-      </div>
-      <div class="auth-body">
-        <h3>Choose an account</h3>
-        <p>Enter your Google account email address.</p>
-        <div class="auth-field"><label>Email</label><input type="email" id="googleUser" placeholder="you@gmail.com"/></div>
-        <div class="auth-field"><label>Password</label><input type="password" id="googlePass" placeholder="••••••••"/></div>
-        <button class="auth-submit-btn google-btn" id="googleSubmit">Continue</button>
-        <div class="auth-back-link" data-back>← Back to providers</div>
-      </div>
+        </span>
+        <span>Continue with Google</span>
+      </button>
+      <div class="signin-note">Secure sign-in provided by Google, via Firebase Authentication. We only ever see your name, email address and profile photo.</div>
     </div>
-
   </div>
 </div>
 
@@ -754,7 +708,39 @@ html[data-theme="night"] .wordmark .wm-script{color:var(--gold);}
 
 <div class="toast" id="toast"></div>
 
-<script>
+<script type="module">
+// ══════════════════════════════════════════════════════════
+//  FIREBASE  (Authentication + Cloud Firestore)
+// ══════════════════════════════════════════════════════════
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut, onAuthStateChanged }
+  from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js';
+import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, onSnapshot, query,
+         runTransaction, arrayUnion, arrayRemove, writeBatch }
+  from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js';
+
+/* ┌────────────────────────────────────────────────────────────────┐
+   │  PASTE YOUR FIREBASE CONFIG HERE.                                │
+   │  Firebase console → Project settings (gear) → "Your apps" →      │
+   │  register a Web app → copy the firebaseConfig values in.         │
+   │  These values are PUBLIC identifiers — safe to ship in the page. │
+   │  Your data is protected by the Firestore security rules, not by  │
+   │  hiding these keys.                                              │
+   └────────────────────────────────────────────────────────────────┘ */
+const firebaseConfig = {
+  apiKey:            "AIzaSyCFUSS1lqhPvIuNXk5hVjdRp47RqiAOpmA",
+  authDomain:        "york-actor-network.firebaseapp.com",
+  projectId:         "york-actor-network",
+  storageBucket:     "york-actor-network.firebasestorage.app",
+  messagingSenderId: "572469498607",
+  appId:             "1:572469498607:web:9744a540f2ea78d7d7011a"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const auth  = getAuth(fbApp);
+const db    = getFirestore(fbApp);
+const googleProvider = new GoogleAuthProvider();
+
 // ══════════════════════════════════════════════════════════
 //  CATEGORIES  (7 including Rehearsal)
 // ══════════════════════════════════════════════════════════
@@ -787,27 +773,12 @@ function buildLegend(){
 buildLegend();
 
 // ══════════════════════════════════════════════════════════
-//  AUTH / PROFILE
+//  AUTH  (Firebase — Google sign-in)
 // ══════════════════════════════════════════════════════════
-const PROFILE_KEY = 'goldenreel_profile_v1';
-let currentUser = null; // { id, name, provider, avatar }
+let currentUser = null; // { id, name, email, provider, photo }
 
-function loadProfile() {
-  try { const r=localStorage.getItem(PROFILE_KEY); return r?JSON.parse(r):null; } catch{ return null; }
-}
-function saveProfile(p) { localStorage.setItem(PROFILE_KEY,JSON.stringify(p)); }
-function clearProfile() { localStorage.removeItem(PROFILE_KEY); }
+function getInitial(name){ return name ? name.trim()[0].toUpperCase() : '?'; }
 
-function getUserId(provider, username) {
-  // Stable ID: provider + normalised username
-  return provider + ':' + username.toLowerCase().replace(/[^a-z0-9@._]/g,'');
-}
-
-function getInitial(name) {
-  return name ? name.trim()[0].toUpperCase() : '?';
-}
-
-// Render user corner based on auth state
 function renderUserCorner() {
   const corner = document.getElementById('userCorner');
   if (!currentUser) {
@@ -815,7 +786,6 @@ function renderUserCorner() {
     document.getElementById('btnOpenSignIn').addEventListener('click', openSignIn);
     document.getElementById('profileDropdown').classList.remove('open');
   } else {
-    const providerLabel = {slack:'Slack',google:'Google'}[currentUser.provider] || currentUser.provider;
     corner.innerHTML = `
       <div style="text-align:right;">
         <div class="user-name-label">${currentUser.name}</div>
@@ -825,159 +795,113 @@ function renderUserCorner() {
     document.getElementById('inlineSignOut').addEventListener('click', signOut);
     document.getElementById('avatarBtn').addEventListener('click', (e) => {
       e.stopPropagation();
-      const dd = document.getElementById('profileDropdown');
-      dd.classList.toggle('open');
+      document.getElementById('profileDropdown').classList.toggle('open');
     });
-    // Populate dropdown
     document.getElementById('pdName').textContent = currentUser.name;
-    document.getElementById('pdProvider').textContent = 'via ' + providerLabel;
+    document.getElementById('pdProvider').textContent = currentUser.email || 'via Google';
   }
 }
 
-function signIn(provider, username) {
-  // Derive a display name from the username input
-  let name = username.replace(/@.*$/,'').replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase()).trim();
-  if (!name) name = username;
-  const user = { id: getUserId(provider, username), name, provider, raw: username };
-  currentUser = user;
-  saveProfile(user);
-  renderUserCorner();
-  closeAllAuthScreens();
-  document.getElementById('signInModal').classList.remove('open');
-  showToast(`✦ Welcome, ${name}!`);
-  renderCalendar();
-  renderSuggestions();
+async function signInWithGoogle(){
+  try {
+    await signInWithPopup(auth, googleProvider);
+    // onAuthStateChanged (below) handles the UI update.
+  } catch(e){
+    console.error('Sign-in error', e);
+    if (e.code === 'auth/unauthorized-domain') {
+      showToast('Add this site under Firebase → Authentication → Settings → Authorized domains');
+    } else if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
+      showToast('Sign-in failed: ' + (e.code || e.message));
+    }
+  }
 }
 
 function signOut() {
-  currentUser = null;
-  clearProfile();
-  renderUserCorner();
+  fbSignOut(auth).catch(e => console.error(e));
   document.getElementById('profileDropdown').classList.remove('open');
-  showToast('Signed out');
-  renderCalendar();
-  renderSuggestions();
 }
+
+// Fires once on load and on every sign-in / sign-out.
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const name = user.displayName || (user.email ? user.email.split('@')[0] : 'Member');
+    currentUser = { id: user.uid, name, email: user.email || '', provider: 'google', photo: user.photoURL || '' };
+    document.getElementById('signInModal').classList.remove('open');
+    showToast(`✦ Welcome, ${name}!`);
+  } else {
+    currentUser = null;
+  }
+  renderUserCorner();
+  if (typeof renderCalendar === 'function') renderCalendar();
+  if (typeof renderSuggestions === 'function') renderSuggestions();
+  refreshOpenDetail();
+});
 
 document.getElementById('pdSignOut').addEventListener('click', signOut);
 document.addEventListener('click', (e) => {
   const dd = document.getElementById('profileDropdown');
-  if (dd.classList.contains('open') && !dd.contains(e.target) && e.target.id !== 'avatarBtn') {
-    dd.classList.remove('open');
-  }
+  if (dd.classList.contains('open') && !dd.contains(e.target) && e.target.id !== 'avatarBtn') dd.classList.remove('open');
 });
 
-// ══════════════════════════════════════════════════════════
-//  SIGN-IN MODAL LOGIC
-// ══════════════════════════════════════════════════════════
-function openSignIn() { document.getElementById('signInModal').classList.add('open'); showScreen('screenProviders'); }
-document.getElementById('closeSignIn').addEventListener('click', () => { document.getElementById('signInModal').classList.remove('open'); });
-
-function showScreen(id) {
-  document.querySelectorAll('.auth-screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-function closeAllAuthScreens() { showScreen('screenProviders'); }
-
-document.querySelectorAll('.provider-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const p = btn.dataset.provider;
-    showScreen('screen' + p.charAt(0).toUpperCase() + p.slice(1));
-  });
-});
-document.querySelectorAll('[data-back]').forEach(el => {
-  el.addEventListener('click', () => showScreen('screenProviders'));
-});
-
-// Submit handlers for each provider
-function providerSubmit(provider, inputId, passId) {
-  const val = document.getElementById(inputId).value.trim();
-  if (!val) { showToast('Please enter your username or email'); return; }
-  signIn(provider, val);
-}
-document.getElementById('slackSubmit').addEventListener('click', () => providerSubmit('slack','slackUser','slackPass'));
-document.getElementById('googleSubmit').addEventListener('click',() => providerSubmit('google','googleUser','googlePass'));
-
-// Enter key on auth inputs
-['slackUser','slackPass','googleUser','googlePass'].forEach(id => {
-  document.getElementById(id).addEventListener('keydown', e => {
-    if (e.key==='Enter') e.target.closest('.auth-screen').querySelector('.auth-submit-btn').click();
-  });
-});
-
+// ── Sign-in modal (real Google sign-in) ──
+function openSignIn(){ document.getElementById('signInModal').classList.add('open'); }
+document.getElementById('closeSignIn').addEventListener('click', () => document.getElementById('signInModal').classList.remove('open'));
+document.getElementById('googleSignInBtn').addEventListener('click', signInWithGoogle);
 document.getElementById('signInModal').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
 
 // ══════════════════════════════════════════════════════════
 //  DATA STORAGE
 // ══════════════════════════════════════════════════════════
-const STORAGE_KEY = 'goldenreel_v5';
-function loadEvents() {
-  try{ const r=localStorage.getItem(STORAGE_KEY); return r?JSON.parse(r):getSamples(); } catch{ return getSamples(); }
-}
-function saveEvents(){ try{ localStorage.setItem(STORAGE_KEY,JSON.stringify(events)); }catch{} }
+let events = [];        // kept in sync with the "events" collection
+let eventsReady = false;
 
-function getSamples() {
-  const t=new Date(), y=t.getFullYear(), m=t.getMonth();
-  const ds=d=>`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-  return [
-    { id:uid(), ownerId:'york:hm456', ownerName:'Helena Marsh', category:'play-aud',
-      title:"A Midsummer Night's Dream — Auditions",
-      desc:"Open auditions for our summer outdoor production. All experience levels welcome.",
-      startDate:ds(3), endDate:ds(5), time:"10:00", location:"The Regal Theatre",
-      organiser:"Helena Marsh",
-      roles:[
-        {id:uid(),name:"Puck",    cap:2,registrations:[{name:"Rosaline F."},{name:"Edmund V."}]},
-        {id:uid(),name:"Titania", cap:1,registrations:[]},
-        {id:uid(),name:"Bottom",  cap:3,registrations:[{name:"Tom C."}]},
-        {id:uid(),name:"Ensemble",cap:0,registrations:[{name:"Iris B."}]},
-      ]
-    },
-    { id:uid(), ownerId:'google:d.harrington@gmail.com', ownerName:'D. Harrington', category:'film-aud',
-      title:"Film Short — Casting Call",
-      desc:"Principal cast for a 1950s-era short film.",
-      startDate:ds(10), endDate:ds(10), time:"13:00", location:"Studio Café",
-      organiser:"D. Harrington",
-      roles:[
-        {id:uid(),name:"Lead Actress",       cap:1,registrations:[]},
-        {id:uid(),name:"Lead Actor",         cap:1,registrations:[]},
-        {id:uid(),name:"Supporting Role",    cap:4,registrations:[{name:"Grace K."}]},
-        {id:uid(),name:"Extras / Background",cap:0,registrations:[]},
-      ]
-    },
-    { id:uid(), ownerId:'york:hm456', ownerName:'Helena Marsh', category:'rehearsal',
-      title:"Midsummer Night's Dream — Rehearsals",
-      desc:"Full cast rehearsals leading up to opening night. Attendance essential.",
-      startDate:ds(12), endDate:ds(19), time:"18:30", location:"The Regal Theatre (Studio Space)",
-      organiser:"Helena Marsh", roles:[]
-    },
-    { id:uid(), ownerId:'google:d.harrington@gmail.com', ownerName:'D. Harrington', category:'filming',
-      title:"The Duchess of Malfi — Tech Week",
-      desc:"Get-in, lighting plot and technical rehearsals ahead of opening. Cast and crew called 17:30.",
-      startDate:ds(14), endDate:ds(18), time:"17:30", location:"The Guildhall Theatre",
-      organiser:"D. Harrington", roles:[]
-    },
-    { id:uid(), ownerId:'slack:thereel', ownerName:'The Green Room', category:'social',
-      title:"Green Room Social & Play Reading",
-      desc:"An informal evening of cold readings and company mingling. Newcomers warmly welcome.",
-      startDate:ds(21), endDate:ds(21), time:"19:30", location:"The Old Vic Tavern, Upstairs",
-      organiser:"The Green Room", roles:[]
-    },
-    { id:uid(), ownerId:'slack:committee', ownerName:'The Committee', category:'meeting',
-      title:"Production Committee Meeting",
-      desc:"Monthly planning meeting — agenda circulated beforehand.",
-      startDate:ds(24), endDate:ds(24), time:"18:00", location:"Village Hall Room 3",
-      organiser:"The Committee", roles:[]
-    },
-    { id:uid(), ownerId:'york:hm456', ownerName:'Helena Marsh', category:'play-book',
-      title:"Hamlet — Performance Nights",
-      desc:"Four-night run of our spring production.",
-      startDate:ds(26), endDate:ds(29), time:"19:30", location:"The Regal Theatre",
-      organiser:"Helena Marsh", roles:[]
-    },
-  ];
+function subscribeEvents(){
+  onSnapshot(query(collection(db, 'events')), (snap) => {
+    events = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    eventsReady = true;
+    renderCalendar();
+    refreshOpenDetail();   // keep an open event card live as sign-ups change
+  }, (err) => {
+    console.error('events listener:', err);
+    showToast('Could not load events — check your Firestore rules');
+  });
 }
 
-let events = loadEvents();
+// If the detail modal is open, re-render it from the freshest data.
+function refreshOpenDetail(){
+  const dm = document.getElementById('detailModal');
+  if (!dm || !dm.classList.contains('open') || !selectedEventId) return;
+  if (events.find(e => e.id === selectedEventId)) openDetail(selectedEventId, selectedDate);
+  else dm.classList.remove('open');
+}
+
+// Sign-ups run in a transaction so simultaneous registrations can't clobber each other.
+async function signUpRole(eventId, roleId, name){
+  const ref = doc(db,'events',eventId);
+  await runTransaction(db, async (tx) => {
+    const snap = await tx.get(ref);
+    if(!snap.exists()) throw new Error('gone');
+    const roles = snap.data().roles || [];
+    const role = roles.find(r => r.id === roleId);
+    if(!role) throw new Error('norole');
+    role.registrations = role.registrations || [];
+    if(role.cap > 0 && role.registrations.length >= role.cap) throw new Error('full');
+    if(role.registrations.some(r => r.name.toLowerCase() === name.toLowerCase())) throw new Error('dup');
+    role.registrations.push({ name, by: currentUser.id });
+    tx.update(ref, { roles });
+  });
+}
+async function generalSignUp(eventId, name){
+  const ref = doc(db,'events',eventId);
+  await runTransaction(db, async (tx) => {
+    const snap = await tx.get(ref);
+    if(!snap.exists()) throw new Error('gone');
+    const gr = snap.data().generalRegistrations || [];
+    if(gr.some(r => r.name.toLowerCase() === name.toLowerCase())) throw new Error('dup');
+    gr.push({ name, by: currentUser.id });
+    tx.update(ref, { generalRegistrations: gr });
+  });
+}
 let currentDate = new Date();
 let selectedDate = null;
 let selectedEventId = null;
@@ -1224,7 +1148,8 @@ document.getElementById('openCreateModal').addEventListener('click',()=>openCrea
 document.getElementById('closeCreateModal').addEventListener('click',()=>document.getElementById('createModal').classList.remove('open'));
 document.getElementById('cancelCreate').addEventListener('click',()=>document.getElementById('createModal').classList.remove('open'));
 
-document.getElementById('submitCreate').addEventListener('click',()=>{
+document.getElementById('submitCreate').addEventListener('click', async () => {
+  if(!currentUser){ showToast('Please sign in first'); openSignIn(); return; }
   const title=document.getElementById('evTitle').value.trim();
   const startDate=document.getElementById('evStartDate').value;
   const endDate=document.getElementById('evEndDate').value||startDate;
@@ -1232,60 +1157,47 @@ document.getElementById('submitCreate').addEventListener('click',()=>{
   if(!title||!startDate||!organiser){ showToast('Title, start date & organiser required'); return; }
   if(endDate<startDate){ showToast('End date must be on or after start date'); return; }
 
-  if(editingEventId){
-    // Update existing
-    const idx=events.findIndex(e=>e.id===editingEventId);
-    if(idx===-1) return;
-    const existing=events[idx];
-    events[idx]={
-      ...existing,
-      category:selectedCat, title,
-      desc:document.getElementById('evDesc').value.trim(),
-      startDate, endDate,
-      time:document.getElementById('evTime').value,
-      location:document.getElementById('evLocation').value.trim(),
-      organiser,
-      roles:pendingRoles
-    };
-    saveEvents(); renderCalendar();
-    document.getElementById('createModal').classList.remove('open');
-    showToast('✦ Event updated');
-    openDetail(editingEventId, selectedDate);
-  } else {
-    // Create new
-    const base={
-      ownerId: currentUser.id,
-      ownerName: currentUser.name,
-      category:selectedCat, title,
-      desc:document.getElementById('evDesc').value.trim(),
-      time:document.getElementById('evTime').value,
-      location:document.getElementById('evLocation').value.trim(),
-      organiser
-    };
-    const freq=document.getElementById('evRepeat').value;
-    if(freq==='none'){
-      events.push({ id:uid(), ...base, startDate, endDate, roles:pendingRoles });
-      showToast('✦ Event created');
+  const fields={
+    category:selectedCat, title,
+    desc:document.getElementById('evDesc').value.trim(),
+    time:document.getElementById('evTime').value,
+    location:document.getElementById('evLocation').value.trim(),
+    organiser,
+    roles:pendingRoles
+  };
+
+  try {
+    if(editingEventId){
+      // Update existing (owner only — enforced by security rules)
+      await updateDoc(doc(db,'events',editingEventId), { ...fields, startDate, endDate });
+      showToast('✦ Event updated');
     } else {
-      // Default the end of the series to 3 months out if none given
-      let until=document.getElementById('evRepeatUntil').value;
-      if(!until){ const u=parseDate(startDate); u.setMonth(u.getMonth()+3); until=dateStr(u.getFullYear(),u.getMonth(),u.getDate()); }
-      if(until<startDate){ showToast('"Repeat until" must be after the start date'); return; }
-      const occ=buildOccurrences(startDate, endDate, freq, until);
-      const seriesId=uid();
-      occ.forEach(o=>{
-        events.push({
-          id:uid(), ...base,
-          startDate:o.startDate, endDate:o.endDate,
-          seriesId, repeatLabel:REPEAT_LABELS[freq],
-          // each date gets its own independent sign-up sheet
-          roles: pendingRoles.map(r=>({id:uid(),name:r.name,cap:r.cap,registrations:[]}))
+      const base={ ...fields, ownerId: currentUser.id, ownerName: currentUser.name, createdAt: Date.now() };
+      const freq=document.getElementById('evRepeat').value;
+      if(freq==='none'){
+        await addDoc(collection(db,'events'), { ...base, startDate, endDate });
+        showToast('✦ Event created');
+      } else {
+        let until=document.getElementById('evRepeatUntil').value;
+        if(!until){ const u=parseDate(startDate); u.setMonth(u.getMonth()+3); until=dateStr(u.getFullYear(),u.getMonth(),u.getDate()); }
+        if(until<startDate){ showToast('"Repeat until" must be after the start date'); return; }
+        const occ=buildOccurrences(startDate, endDate, freq, until);
+        const seriesId=uid();
+        const batch=writeBatch(db);
+        occ.forEach(o=>{
+          const ref=doc(collection(db,'events'));
+          batch.set(ref, { ...base, startDate:o.startDate, endDate:o.endDate, seriesId, repeatLabel:REPEAT_LABELS[freq],
+            roles: pendingRoles.map(r=>({id:uid(),name:r.name,cap:r.cap,registrations:[]})) });
         });
-      });
-      showToast(`✦ Created ${occ.length} ${REPEAT_LABELS[freq].toLowerCase()} events`);
+        await batch.commit();
+        showToast(`✦ Created ${occ.length} ${REPEAT_LABELS[freq].toLowerCase()} events`);
+      }
     }
-    saveEvents(); renderCalendar();
     document.getElementById('createModal').classList.remove('open');
+    // The live listener re-renders the calendar and any open event card.
+  } catch(e){
+    console.error('save event:', e);
+    showToast('Could not save: ' + (e.code || e.message));
   }
 });
 
@@ -1375,20 +1287,25 @@ function openDetail(eventId, fromDate){
 // ══════════════════════════════════════════════════════════
 //  DELETE EVENT  (series-aware)
 // ══════════════════════════════════════════════════════════
-function deleteEvent(ev){
-  if(ev.seriesId){
-    if(!confirm('This is a repeating event. Delete it?')) return;
-    const count=events.filter(e=>e.seriesId===ev.seriesId).length;
-    const all=confirm(`Delete the ENTIRE series?\n\nOK = remove all ${count} dates in this series\nCancel = remove only this single date`);
-    if(all){ events=events.filter(e=>e.seriesId!==ev.seriesId); showToast('Whole series removed'); }
-    else   { events=events.filter(e=>e.id!==ev.id); showToast('This date removed'); }
-  } else {
-    if(!confirm('Delete this event? This cannot be undone.')) return;
-    events=events.filter(e=>e.id!==ev.id);
-    showToast('Event removed');
+async function deleteEvent(ev){
+  if(!currentUser){ showToast('Please sign in first'); openSignIn(); return; }
+  try {
+    if(ev.seriesId){
+      if(!confirm('This is a repeating event. Delete it?')) return;
+      const sib=events.filter(e=>e.seriesId===ev.seriesId);
+      const all=confirm(`Delete the ENTIRE series?\n\nOK = remove all ${sib.length} dates in this series\nCancel = remove only this single date`);
+      if(all){ const batch=writeBatch(db); sib.forEach(e=>batch.delete(doc(db,'events',e.id))); await batch.commit(); showToast('Whole series removed'); }
+      else   { await deleteDoc(doc(db,'events',ev.id)); showToast('This date removed'); }
+    } else {
+      if(!confirm('Delete this event? This cannot be undone.')) return;
+      await deleteDoc(doc(db,'events',ev.id));
+      showToast('Event removed');
+    }
+    document.getElementById('detailModal').classList.remove('open');
+  } catch(e){
+    console.error('delete event:', e);
+    showToast('Could not delete: ' + (e.code || e.message));
   }
-  saveEvents(); renderCalendar();
-  document.getElementById('detailModal').classList.remove('open');
 }
 
 // ══════════════════════════════════════════════════════════
@@ -1406,15 +1323,17 @@ function renderSignupArea(ev){
           <button class="signup-confirm-btn" id="generalSignupBtn">Sign Up</button>
         </div>
       </div>`;
-    document.getElementById('generalSignupBtn').addEventListener('click',()=>{
+    document.getElementById('generalSignupBtn').addEventListener('click', async ()=>{
+      if(!currentUser){ showToast('Please sign in to register'); openSignIn(); return; }
       const name=document.getElementById('signupName').value.trim();
       if(!name){ showToast('Please enter your name'); return; }
-      if(!ev.generalRegistrations) ev.generalRegistrations=[];
-      if(ev.generalRegistrations.some(r=>r.name.toLowerCase()===name.toLowerCase())){ showToast("You're already registered!"); return; }
-      ev.generalRegistrations.push({name});
-      saveEvents(); renderCalendar();
-      showToast('✦ You\'re on the list!');
-      renderSignupArea(ev);
+      try {
+        await generalSignUp(ev.id, name);
+        showToast('✦ You\'re on the list!');   // live listener refreshes the card
+      } catch(e){
+        if(e.message==='dup') showToast("You're already registered!");
+        else { console.error(e); showToast('Could not register: '+(e.code||e.message)); }
+      }
     });
     if((ev.generalRegistrations||[]).length){
       const chipArea=area.querySelector('.roles-signup-section');
@@ -1462,21 +1381,20 @@ function renderSignupArea(ev){
     });
   }
   rebuildRoleCards();
-  document.getElementById('roleSignupBtn').addEventListener('click',()=>{
+  document.getElementById('roleSignupBtn').addEventListener('click', async ()=>{
+    if(!currentUser){ showToast('Please sign in to register'); openSignIn(); return; }
     const name=document.getElementById('signupName').value.trim();
     if(!name){ showToast('Please enter your name'); return; }
     if(!selectedRoleId){ showToast('Please select a role first'); return; }
-    const role=ev.roles.find(r=>r.id===selectedRoleId);
-    if(!role) return;
-    if(role.cap>0&&role.registrations.length>=role.cap){ showToast('That role is now full!'); return; }
-    if(role.registrations.some(r=>r.name.toLowerCase()===name.toLowerCase())){ showToast("Already registered for this role!"); return; }
-    role.registrations.push({name});
-    saveEvents(); renderCalendar();
-    selectedRoleId=null;
-    document.getElementById('signupName').value='';
-    document.getElementById('signupNameRow').style.display='none';
-    showToast(`✦ Registered for ${role.name} — break a leg!`);
-    rebuildRoleCards();
+    const roleName=(ev.roles.find(r=>r.id===selectedRoleId)||{}).name||'that role';
+    try {
+      await signUpRole(ev.id, selectedRoleId, name);
+      showToast(`✦ Registered for ${roleName} — break a leg!`);   // live listener refreshes the card
+    } catch(e){
+      if(e.message==='full') showToast('That role is now full!');
+      else if(e.message==='dup') showToast('Already registered for this role!');
+      else { console.error(e); showToast('Could not register: '+(e.code||e.message)); }
+    }
   });
 }
 
@@ -1515,16 +1433,7 @@ document.querySelectorAll('.page-tab').forEach(tab=>{
 // ══════════════════════════════════════════════════════════
 //  SUGGESTION BOX
 // ══════════════════════════════════════════════════════════
-const SUGGEST_KEY='goldenreel_suggestions_v2';
-const DEVICE_KEY='goldenreel_device_v1';
 let suggestSort='top';
-
-function getDeviceId(){
-  let d=localStorage.getItem(DEVICE_KEY);
-  if(!d){ d='dev_'+uid(); localStorage.setItem(DEVICE_KEY,d); }
-  return d;
-}
-function voterId(){ return currentUser?currentUser.id:getDeviceId(); }
 function escapeHtml(str){ return String(str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function timeAgo(ts){
   const s=Math.floor((Date.now()-ts)/1000);
@@ -1535,19 +1444,13 @@ function timeAgo(ts){
   return new Date(ts).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
 }
 
-function loadSuggestions(){
-  try{ const r=localStorage.getItem(SUGGEST_KEY); return r?JSON.parse(r):getSampleSuggestions(); }catch{ return getSampleSuggestions(); }
+let suggestions=[];
+function subscribeSuggestions(){
+  onSnapshot(query(collection(db,'suggestions')), (snap)=>{
+    suggestions=snap.docs.map(d=>({ id:d.id, votes:[], ...d.data() }));
+    renderSuggestions();
+  }, (err)=>{ console.error('suggestions listener:', err); });
 }
-function saveSuggestions(){ try{ localStorage.setItem(SUGGEST_KEY,JSON.stringify(suggestions)); }catch{} }
-function getSampleSuggestions(){
-  const now=Date.now();
-  return [
-    {id:uid(),authorId:null,deviceId:null,authorName:'Iris B.',category:'Feature request',text:"Could we get a filter so the calendar shows only auditions, or only rehearsals? Some months get pretty busy.",createdAt:now-1000*60*60*48,votes:['s1','s2','s3','s4']},
-    {id:uid(),authorId:null,deviceId:null,authorName:'Tom C.',category:'Feature request',text:"An 'export to my calendar' button (Google/Apple) would be really handy so I don't miss rehearsals.",createdAt:now-1000*60*60*20,votes:['s1','s2']},
-    {id:uid(),authorId:null,deviceId:null,authorName:null,category:'Design & layout',text:"On my phone the event boxes can be a bit small to tap — slightly bigger touch targets would help.",createdAt:now-1000*60*60*5,votes:['s1']},
-  ];
-}
-let suggestions=loadSuggestions();
 
 function renderSuggestions(){
   const feed=document.getElementById('suggestionsFeed');
@@ -1556,11 +1459,11 @@ function renderSuggestions(){
   if(suggestSort==='top') list.sort((a,b)=> (b.votes.length-a.votes.length) || (b.createdAt-a.createdAt));
   else list.sort((a,b)=> b.createdAt-a.createdAt);
   if(!list.length){ feed.innerHTML='<div class="suggest-empty">The box is empty.<br>Be the first to suggest an improvement!</div>'; return; }
-  const me=voterId();
+  const me=currentUser?currentUser.id:null;
   feed.innerHTML='';
   list.forEach(s=>{
-    const voted=s.votes.includes(me);
-    const canDelete=(s.authorId && currentUser && s.authorId===currentUser.id) || (s.deviceId && s.deviceId===getDeviceId());
+    const voted=(s.votes||[]).includes(me);
+    const canDelete=currentUser && s.authorId===currentUser.id;
     const item=document.createElement('div'); item.className='suggestion-item';
     item.innerHTML=`
       <div class="vote-box">
@@ -1583,16 +1486,19 @@ function renderSuggestions(){
   feed.querySelectorAll('.btn-delete-suggestion').forEach(b=>b.addEventListener('click',()=>deleteSuggestion(b.dataset.del)));
 }
 
-function toggleVote(id){
+async function toggleVote(id){
+  if(!currentUser){ showToast('Sign in to vote'); openSignIn(); return; }
   const s=suggestions.find(x=>x.id===id); if(!s) return;
-  const me=voterId(); const i=s.votes.indexOf(me);
-  if(i>=0){ s.votes.splice(i,1); } else { s.votes.push(me); showToast('✦ Upvoted!'); }
-  saveSuggestions(); renderSuggestions();
+  const voted=(s.votes||[]).includes(currentUser.id);
+  try{
+    await updateDoc(doc(db,'suggestions',id), { votes: voted?arrayRemove(currentUser.id):arrayUnion(currentUser.id) });
+    if(!voted) showToast('✦ Upvoted!');   // live listener re-renders
+  }catch(e){ console.error(e); showToast('Could not vote: '+(e.code||e.message)); }
 }
-function deleteSuggestion(id){
+async function deleteSuggestion(id){
   if(!confirm('Remove your suggestion?')) return;
-  suggestions=suggestions.filter(x=>x.id!==id);
-  saveSuggestions(); renderSuggestions(); showToast('Suggestion removed');
+  try{ await deleteDoc(doc(db,'suggestions',id)); showToast('Suggestion removed'); }
+  catch(e){ console.error(e); showToast('Could not remove: '+(e.code||e.message)); }
 }
 
 function setSortButtons(){
@@ -1602,26 +1508,26 @@ function setSortButtons(){
 document.getElementById('sortTop').addEventListener('click',()=>{ suggestSort='top'; setSortButtons(); renderSuggestions(); });
 document.getElementById('sortNew').addEventListener('click',()=>{ suggestSort='new'; setSortButtons(); renderSuggestions(); });
 
-document.getElementById('sgSubmit').addEventListener('click',()=>{
+document.getElementById('sgSubmit').addEventListener('click', async ()=>{
+  if(!currentUser){ showToast('Please sign in to suggest'); openSignIn(); return; }
   const text=document.getElementById('sgText').value.trim();
   if(!text){ showToast('Write your suggestion first'); return; }
   const typed=document.getElementById('sgName').value.trim();
-  const name=typed || (currentUser?currentUser.name:'');
-  suggestions.push({
-    id:uid(),
-    authorId: currentUser?currentUser.id:null,
-    deviceId: getDeviceId(),
-    authorName: name||null,
-    category: document.getElementById('sgCategory').value,
-    text,
-    createdAt: Date.now(),
-    votes:[]
-  });
-  saveSuggestions();
-  document.getElementById('sgText').value='';
-  document.getElementById('sgName').value='';
-  suggestSort='top'; setSortButtons(); renderSuggestions();
-  showToast('✦ Suggestion submitted — thank you!');
+  const name=typed || currentUser.name || null;
+  try{
+    await addDoc(collection(db,'suggestions'), {
+      authorId: currentUser.id,
+      authorName: name,
+      category: document.getElementById('sgCategory').value,
+      text,
+      createdAt: Date.now(),
+      votes: []
+    });
+    document.getElementById('sgText').value='';
+    document.getElementById('sgName').value='';
+    suggestSort='top'; setSortButtons();
+    showToast('✦ Suggestion submitted — thank you!');   // live listener re-renders
+  }catch(e){ console.error(e); showToast('Could not submit: '+(e.code||e.message)); }
 });
 
 // ══════════════════════════════════════════════════════════
@@ -1664,10 +1570,11 @@ document.getElementById('themeToggle').addEventListener('click',()=>{
 });
 
 initTheme();
-currentUser = loadProfile();
-renderUserCorner();
-renderCalendar();
-renderSuggestions();
+renderUserCorner();       // shows "Sign In" until Firebase auth resolves
+renderCalendar();         // empty grid until the first Firestore snapshot arrives
+subscribeEvents();        // live events collection
+subscribeSuggestions();   // live suggestions collection
+// currentUser is populated by onAuthStateChanged (see AUTH section above).
 </script>
 </body>
 </html>
