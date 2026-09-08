@@ -857,9 +857,9 @@ const googleProvider = new GoogleAuthProvider();
    │  still work without it. These IDs are public by design.          │
    └────────────────────────────────────────────────────────────────┘ */
 const EMAILJS = {
-  publicKey:  "",   // EmailJS "Public Key"
-  serviceId:  "",   // EmailJS Service ID  (e.g. service_xxxxxxx)
-  templateId: ""    // EmailJS Template ID (e.g. template_xxxxxxx)
+  publicKey:  "HDmnKCrZGvd8uC-DD",   // EmailJS "Public Key"
+  serviceId:  "service_yvta7ki",   // EmailJS Service ID  (e.g. service_xxxxxxx)
+  templateId: "template_26yta3g"    // EmailJS Template ID (e.g. template_xxxxxxx)
 };
 const emailEnabled = !!(EMAILJS.publicKey && EMAILJS.serviceId && EMAILJS.templateId && window.emailjs);
 if (emailEnabled) { try { window.emailjs.init({ publicKey: EMAILJS.publicKey }); } catch(e){ console.warn('EmailJS init failed', e); } }
